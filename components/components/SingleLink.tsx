@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
 
 
 export default function SingleLink({ href, page, linkType,  children, openInNewTab }: Sanity.Link) {

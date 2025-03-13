@@ -8,7 +8,7 @@ export default function Hero(section: Section.HeroProps) {
     const imageTablet = section?.image_tablet;
     const imageMobile = section?.image_mobile;
 
-    let desktopSrcset, tabletSrcset, mobileSrcset;
+    let  tabletSrcset, mobileSrcset;
 
     const {
         props: { srcSet, ...rest },
@@ -19,7 +19,7 @@ export default function Hero(section: Section.HeroProps) {
         height: imageDesktop?.asset?.metadata?.dimensions?.height,
     });
 
-    desktopSrcset = srcSet;
+    const desktopSrcset = srcSet;
 
     if (imageTablet) {
         const {

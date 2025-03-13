@@ -1,4 +1,3 @@
-import LangChangeHandler from "@/components/components/LangChangeHandler";
 import { locales } from "@/i18n/i18n-config";
 import { fetchSanityHeader, fetchSanityFooter } from "@/sanity/sevices/fetchSettings";
 import Header from "@/components/components/Header";

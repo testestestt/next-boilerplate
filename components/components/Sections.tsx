@@ -1,6 +1,5 @@
 import FeaturedProjects from "../sections/FeaturedProjects";
 import Hero from "../sections/Hero";
-import Manifesto from "../sections/Manifesto";
 import Services from "../sections/Services";
 import Studio from "../sections/Studio";
 import Approach from "../sections/Approach";

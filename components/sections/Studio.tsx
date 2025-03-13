@@ -1,9 +1,7 @@
 
-import LinkWithArrow from '../components/LinkWithArrow';
 import Image from 'next/image';
 import SingleLink from '../components/SingleLink';
 import { urlFor } from '@/sanity/lib/image';
-import { PortableText } from 'next-sanity';
 
 export default function Studio(section: Section.StudioProps) {
     return(
