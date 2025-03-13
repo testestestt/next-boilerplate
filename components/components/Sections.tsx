@@ -1,9 +1,16 @@
+import FeaturedProjects from "../sections/FeaturedProjects";
 import Hero from "../sections/Hero";
 import Manifesto from "../sections/Manifesto";
+import Services from "../sections/Services";
+import Studio from "../sections/Studio";
+import Approach from "../sections/Approach";
 
 const componentMap: { [key: string]: React.ComponentType } = {
     "hero": Hero,
-    "manifesto": Manifesto,
+    "featured_projects": FeaturedProjects,
+    "studio": Studio,
+    "services": Services,
+    "approach": Approach
 };
 
 export default function Sections({ sections }: { sections?: Sanity.Section[] }) {

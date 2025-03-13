@@ -1,5 +1,6 @@
 import { groq } from 'next-sanity';
-import { heroQuery, manifestoQuery } from './section';
+import { heroQuery, featuredProjectsQuery, studioQuery, servicesQuery, approachQuery } from './section';
+
 
 
 export const PAGE_QUERY = groq`
@@ -7,7 +8,10 @@ export const PAGE_QUERY = groq`
     sections[]{
       ...,
       ${heroQuery},
-      ${manifestoQuery}
+      ${featuredProjectsQuery}
+      ${studioQuery},
+      ${servicesQuery},
+      ${approachQuery}
     },
     title,
     meta_title,
@@ -33,7 +37,10 @@ export const HOME_QUERY = groq`
     sections[]{
       ...,
       ${heroQuery},
-      ${manifestoQuery}
+      ${featuredProjectsQuery},
+      ${studioQuery},
+      ${servicesQuery},
+      ${approachQuery}
     },
     title,
     meta_title,

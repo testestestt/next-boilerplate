@@ -17,7 +17,9 @@ export default function LangChangeHandler ({lang} : {lang: Locale}): JSX.Element
   return (
     <>
     <Link href={`/${otherLocale}`}>
-      {otherLocale}
+      [
+        {otherLocale === "es" ? "esp" : "en"}
+      ]
     </Link>
     </> 
   );

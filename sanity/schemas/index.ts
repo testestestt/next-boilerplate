@@ -6,11 +6,17 @@ import home from './documents/home'
 import projectPost from './singles/project.post'
 import projectCategory from './singles/project.category'
 
-import manifesto from './sections/manifesto';
 import hero from './sections/hero';
-import internalLink from './objects/internalLink';
-import externalLink from './objects/externalLink';
-import blockContent from './objects/blockContent'
+import featured_projects from './sections/featured_projects'
+import studio from './sections/studio'
+import services from './sections/services'
+import approach from './sections/approach'
+
+
+import link from './objects/link';
+import blockContent from './objects/blockContent';
+import featured_project from './objects/featuredProject';
+import service from './objects/service'
 
 
 const documents = [
@@ -19,13 +25,17 @@ const documents = [
   settings,
 ]
 const sections = [
-  manifesto,
   hero,
+  featured_projects,
+  studio,
+  services,
+  approach
 ]
 const objects = [
-  internalLink,
-  externalLink,
-  blockContent
+  blockContent,
+  featured_project,
+  link,
+  service,
 ]
 const singles = [
   projectCategory,

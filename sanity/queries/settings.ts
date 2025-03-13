@@ -1,21 +1,57 @@
 import { groq } from "next-sanity";
 
 export const HEADER_QUERY = groq`
-    *[_type == "settings" && language==$lang][0]{
+    *[_type == "settings" && language == $lang][0]{
         header[]{
-            _type == "internalLinkHeader" => {
-                "_id": @->_id,
-                "title": @->title,
-                "slug": @->slug.current,
-                "type": @->_type,
-                "typeOfLink": "internal"
-            },
-            _type == "externalLinkHeader" => {
-                "url": external,
-                "label": label,
-                "newTab": newTab,
-                "typeOfLink": "external"
+            ...,
+            linkType == 'page' => {
+                "page": page->{
+                    _type,
+                    "slug": slug.current
+                }
             }
         }
     }
+`;
+
+export const FOOTER_QUERY = groq`
+  *[_type == "settings" && language == $lang][0]{
+    sitemap[]{
+      ...,
+      linkType == 'page' => {
+        "page": page->{
+          _type,
+          "slug": slug.current
+        }
+      }
+    },
+    social_links[]{
+      ...,
+      linkType == 'page' => {
+        "page": page->{
+          _type,
+          "slug": slug.current
+        }
+      }
+    },
+    mail_contact{
+      ...,
+      linkType == 'page' => {
+        "page": page->{
+          _type,
+          "slug": slug.current
+        }
+      }
+    },
+    terms_link{
+      ...,
+      linkType == 'page' => {
+        "page": page->{
+          _type,
+          "slug": slug.current
+        }
+      }
+    },
+    locations
+  }
 `;

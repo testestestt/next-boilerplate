@@ -1,7 +1,8 @@
 import LangChangeHandler from "@/components/components/LangChangeHandler";
 import { locales } from "@/i18n/i18n-config";
-import { fetchSanityHeader } from "@/sanity/sevices/fetchSettings";
+import { fetchSanityHeader, fetchSanityFooter } from "@/sanity/sevices/fetchSettings";
 import Header from "@/components/components/Header";
+import Footer from "@/components/components/Footer";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ lang: locale }));
@@ -18,6 +19,7 @@ export default async function MainLayout({
 
   const {lang} = await params;
   const navigation = await fetchSanityHeader(lang);
+  const footer = await fetchSanityFooter(lang);
 
   return (
     <>
@@ -27,6 +29,12 @@ export default async function MainLayout({
         )
       }
       {children}
+
+      {
+        footer && (
+          <Footer footer={footer} />
+        )
+      }
     </>
   );
 }

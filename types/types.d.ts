@@ -28,6 +28,8 @@ declare global {
     type Post = PageBase &
     SanityDocument<{
       readonly _type: "project.post";
+      _id: string;
+      slug: string
       excerpt?: string;
       body: any;
       image?: Image;
@@ -43,6 +45,7 @@ declare global {
     interface AssetMetadata {
       dimensions: SanityImageDimensions;
       dominantColor: string;
+      lqip: string;
     }
   
     interface Asset {
@@ -63,15 +66,40 @@ declare global {
     };
 
     type InternalLink = {
-      _id: string;
-      title: string;
-      slug?: string;
-      type: string;
-      typeOfLink: "internal";
+      _type: string;
+      slug: string;
     };
 
-    type HeaderNavigation = Array<InternalLink | ExternalLink>;
+    type Link = {
+      linkType?: string;
+      href?: string;
+      label?: string;
+      page?: InternalLink;
+      openInNewTab?: boolean;
+      children?: React.ReactNode;
+    }
+
+    type Service = {
+      _key: string;
+      title: string;
+      description: Array<string>;
+    }
+
+    type FeaturedProject = {
+      description?: string;
+      images?: Array<Image>;
+      project?: Post;
+    }
+
+    type HeaderNavigation = Array<Link>;
     
+    type FooterNavigation = {
+      sitemap: Array<Link>;
+      social_links: Array<Link>;
+      mail_contact: Link;
+      terms_link: Link;
+      locations: string;
+    }
   }
 
   // SECTIONS
@@ -79,8 +107,39 @@ declare global {
   namespace Section {
 
     type HeroProps = {
-      title?: string;
+      principal_text?: string;
+      image_desktop?: Image;
+      image_tablet?: Image;
+      image_mobile?: Image;
     };
+
+    type FeaturedProjectsProps = {
+      heading?: string;
+      projects?: Array<Sanity.FeaturedProject>;
+      linkText?: string;
+    }
+
+    type StudioProps = {
+      heading?: string;
+      title?: string;
+      description?: string;
+      link?: Sanity.Link;
+      images?: Array<Image>;
+    };
+
+    type ServicesProps = {
+      heading?: string;
+      title?: string;
+      allServices?: Array<Sanity.Service>;
+    }
+
+    type ApproachProps = {
+      heading?: string;
+      title?: string;
+      description?: string;
+      image?: Image;
+      link?: Sanity.Link;
+    }
 
     type ManifestoProps = {
       title?: string;

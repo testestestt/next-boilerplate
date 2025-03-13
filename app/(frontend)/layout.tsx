@@ -3,6 +3,7 @@ import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 import { Toaster } from "sonner";
 import DisableDraftMode from "@/components/components/DisableDraftMode";
+import "../main.css";
 
 export default async function FrontendLayout({
   children,
@@ -11,7 +12,7 @@ export default async function FrontendLayout({
 }>) {
   const { isEnabled: isDraftMode } = await draftMode();
   return (
-    <>
+    <main className="antialiased bg-white text-black">
       {children}
       <Toaster />
         {isDraftMode && (
@@ -21,6 +22,6 @@ export default async function FrontendLayout({
           </>
         )}
       <SanityLive />
-    </>
+    </main>
   );
 }

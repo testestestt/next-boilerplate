@@ -3,7 +3,11 @@ import { orderRankField } from "@sanity/orderable-document-list";
 
 const sections = [
     "hero",
-    "manifesto",
+    "featured_projects",
+    "studio",
+    "services",
+    "approach"
+
 ]
 
 const mappedSections = sections.map((section) => ({ type: section }));
@@ -66,7 +70,7 @@ export default defineType({
             {
               name: 'grid',
               previewImageUrl: (section) => 
-                `/assets/cms/${section}.webp`,
+                `/assets/cms/${section}.png`,
             },
             { name: 'list' },
           ]

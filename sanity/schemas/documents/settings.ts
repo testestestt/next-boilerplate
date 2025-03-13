@@ -5,40 +5,13 @@ export default defineType({
     type: "document",
     title: "Settings",
     fields: [
-        defineField({ 
-            name: "title", type: "string"
-        }),
         defineField({
             name: 'header',
             type: 'array',
             of: [
                 {
-					type: 'reference',
-                    name: 'internalLinkHeader',
-                    title: 'Internal link',
-					to: [{ type: 'page' }, { type: 'home' }, { type: 'project.post' }],
-					options: {
-                        filter: ({ document }) => {
-                            const { language } = document
-        
-                            if (language) {
-                                return {
-                                    filter: 'language == $language',
-                                    params: {
-                                        language: language,
-                                    },
-                                }
-                            }
-        
-                            return {}
-                        },
-                        disableNew: true,
-					},
+					type: 'link',
 				},
-                {   
-                    name: 'externalLinkHeader',
-                    type: 'externalLink',
-                }
             ],
             options: {
                 insertMenu: {
@@ -49,11 +22,65 @@ export default defineType({
             },
         }),
         defineField({
+            name: 'sitemap',
+            type: 'array',
+            of: [
+                {
+                    type: 'link',
+                },
+            ],
+            options: {
+                insertMenu: {
+                  views: [
+                    { name: 'list' },
+                  ]
+                }
+            },
+        }),
+        defineField({
+            name: "social_links",
+            type: "array",
+            of: [
+                {
+                    type: "link",
+                },
+            ],
+            options: {
+                insertMenu: {
+                  views: [
+                    { name: 'list' },
+                  ]
+                }
+            },
+        }),
+        defineField({
+            name: 'locations',
+            type: 'string'
+        }),
+        defineField({
+            name: 'mail_contact',
+            type: 'link'
+        }),
+        defineField({
+            name: 'terms_link',
+            type: 'link'
+        }),
+        defineField({
             name: 'language',
             type: 'string',
             readOnly: true,
             hidden: true,
         }),
-        
-    ]   
+    ],
+    preview: {
+        select: {
+            title: "title",
+        },
+        prepare(selection) {
+            return {
+                title: "Settings",
+            };
+        },
+    },
+
 });

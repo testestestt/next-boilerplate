@@ -1,5 +1,5 @@
 import { sanityFetch } from "@/sanity/lib/live";
-import { HEADER_QUERY } from "@/sanity/queries/settings";
+import { HEADER_QUERY, FOOTER_QUERY } from "@/sanity/queries/settings";
 
 
 
@@ -9,4 +9,12 @@ export const fetchSanityHeader = async (lang: Locale): Promise<Sanity.HeaderNavi
     params: { lang },
   });
   return data?.header;
+}
+
+export const fetchSanityFooter = async (lang: Locale): Promise<Sanity.FooterNavigation>=> {
+  const { data } = await sanityFetch({
+    query: FOOTER_QUERY,
+    params: { lang },
+  });
+  return data;
 }
