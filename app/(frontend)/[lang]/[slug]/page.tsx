@@ -1,26 +1,22 @@
 import Sections from "@/components/components/Sections";
-import { fetchSanityPageBySlug, fetchSanityPageSlugs } from "@/sanity/sevices/fetchPage";
-import { generatePageMetadata } from "@/sanity/sevices/generateMetadata";
+import { fetchSanityPageBySlug, } from "@/sanity/sevices/fetchPage";
 
-export async function generateStaticParams() {
-    const slugs = await fetchSanityPageSlugs();
-    return slugs;
-}
+
+
 export const dynamicParams = false;
 
 
-export async function generateMetadata({params}: {params: Promise<{ lang: Locale, slug: string }>}) {
-    const {lang, slug} = await params;
-    const page = await fetchSanityPageBySlug( slug );
-    return generatePageMetadata({ page, slug, locale: lang });
-}
+type ParamsPage = Promise<{ slug: string }>
 
-export default async function Page({params}: {params: Promise<{ slug: string }>}) {
-    const { slug } = await params;
-    const page = await fetchSanityPageBySlug( slug );
+export default async function Page(props: {
+    params: ParamsPage;
+}) {
+    const params = await props.params;
+    const slug = params.slug
+    const page = await fetchSanityPageBySlug(slug);
     return (
         <div>
             <Sections sections={page?.sections} />
         </div>
-    )
+    );
 }
